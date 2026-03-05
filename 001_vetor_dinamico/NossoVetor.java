@@ -1,3 +1,5 @@
+import java.util.Random;
+
 public class NossoVetor {
     private int[] vetor;
     private int ocupacao;
@@ -62,6 +64,55 @@ public class NossoVetor {
         return vetor[ocupacao];
     }
 
+    public void preencheVetor() {
+        Random gerador = new Random();
+        for (int i = 0; i < capacidade; i++) {
+            vetor[i] = gerador.nextInt(0, capacidade * 10);
+        }
+        ocupacao = capacidade;
+    }
+
+    public void bubbleSortMelhorado() {
+        for (int i = ocupacao - 1; i > 0; i--) {
+            boolean trocou = false;
+            for (int j = 0; j < i; j++) {
+                if (vetor[j] > vetor[j+1]) {
+                    trocou = true;
+
+                    int aux = vetor[j];
+                    vetor[j] = vetor[j+1];
+                    vetor[j+1] = aux;
+                }
+            }
+
+            if (!trocou) break;
+        }
+    }
+
+    public boolean buscaLinear(int valor) {
+        for (int i = 0; i < capacidade; i++) {
+            if (vetor[i] == valor) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public boolean buscaBinaria(int valor) {
+        int inicio = 0;
+        int fim = ocupacao - 1;
+
+        while (inicio <= fim) {
+            int meio = (inicio + fim) / 2; // Ponto médio
+            
+            if (valor == vetor[meio]) return true;
+            else if (valor < vetor[meio]) fim = meio-1;
+            else inicio = meio+1;
+        }
+
+        return false;
+    }
+ 
     @Override
     public String toString() {
         var sb = new StringBuilder();

@@ -2,22 +2,18 @@ import java.util.Random;
 
 public class Principal {
     public static void main(String[] args) throws Exception {
-        var nossoVetor = new NossoVetor();
-        var gerador = new Random();
-        
-        while (true) {
-            double escolha = gerador.nextDouble(0, 1); 
-            if (escolha <= 0.6) {
-                int numero = gerador.nextInt(1, 11);
-                nossoVetor.adiciona(numero);
-            } else if (escolha < 0.9) {
-                nossoVetor.remove();
-            }
+        NossoVetor nossoVetor = new NossoVetor(10);
+        nossoVetor.preencheVetor();
 
-            System.out.println(escolha);
-            System.out.println(nossoVetor);
-            System.out.println("*************");
-            Thread.sleep(5000);
+        System.out.println(nossoVetor);
+
+        boolean encontrou = false;
+        while (!encontrou) {
+            Random gerador = new Random();
+            int sorteado = gerador.nextInt(0, 49);
+            encontrou = nossoVetor.buscaBinaria(sorteado);
+
+            System.out.println("Número sorteado: " + sorteado);
         }
     }
 }
