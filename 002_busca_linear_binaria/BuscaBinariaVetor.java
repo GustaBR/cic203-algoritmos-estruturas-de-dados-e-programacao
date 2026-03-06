@@ -5,18 +5,17 @@ public class BuscaBinariaVetor {
     public static int buscaBinaria(int[] vetor, int valor) {
         int inicio = 0;
         int fim = vetor.length - 1;
-        int meio = (inicio + fim) / 2; // Ponto médio
         int indice = -1;
 
         while (inicio <= fim) {
+            int meio = (inicio + fim) / 2; // Ponto médio
+
             if (valor == vetor[meio]) {
                 indice = meio;
                 break;
             }
             else if (valor < vetor[meio]) fim = meio-1;
             else inicio = meio+1;
-            
-            meio = (inicio + fim) / 2;
         }
 
         return indice;
@@ -32,6 +31,8 @@ public class BuscaBinariaVetor {
         System.out.println("\nDepois da ordenação:");
         System.out.println(Arrays.toString(numeros));
 
-        System.out.println("Encontrado em: " + buscaBinaria(numeros, 23));
+        int indice = buscaBinaria(numeros, 77);
+
+        System.out.printf("%s\n", indice == -1 ? "Não encontrado" : "Encontrado em: " + indice);
     }
 }
