@@ -4,7 +4,6 @@ public class TesteListaLigada {
         
         for (int i = 0; i < 10; i++) {
             lista.adicionarNoComeco("Música " + (i+1));
-            System.out.println(lista.primeiro.musica);
         }
     }
 }
