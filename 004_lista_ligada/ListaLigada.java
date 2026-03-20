@@ -1,31 +1,31 @@
 import java.lang.StringBuilder;
 
 public class ListaLigada {
-    No primeiro = null;
+    No primeiro = null, ultimo = null;
     int quantidade = 0;
 
     public void adicionarNoComeco(String musica) {
         No novo = new No(musica, primeiro);
-        quantidade++;
         primeiro = novo;
+        if (estaVazia()) {
+            ultimo = primeiro;
+        }
+
+        quantidade++;
     }
 
     public void adicionarNoFim(String musica) {
         var no = new No(musica, null);
-        quantidade++;
 
-        if (primeiro == null) {
+        if (estaVazia()) {
             primeiro = no;
-            return;
+            ultimo = primeiro;
+        } else {
+            ultimo.prox = no;
+            ultimo = no;
         }
 
-        var aux = primeiro;
-
-        while (aux.prox != null) {
-            aux = aux.prox;
-        }
-
-        aux.prox = no;
+        quantidade++;
     }
 
     public boolean removerDoComeco() {
@@ -34,6 +34,11 @@ public class ListaLigada {
         }
 
         primeiro = primeiro.prox;
+        if (quantidade == 1) {
+            ultimo = primeiro;
+        }
+
+
         quantidade--;
         return true;
     }
@@ -45,14 +50,14 @@ public class ListaLigada {
 
         if (quantidade == 1) {
             primeiro = null;
+            ultimo = primeiro;
         } else {
             var aux = primeiro;
-
-            for (int i = 0; i < quantidade - 2; i++) {
+            while (aux.prox.prox != null) {
                 aux = aux.prox;
             }
-
             aux.prox = null;
+            ultimo = aux;
         }
 
         quantidade--;
