@@ -1,18 +1,18 @@
 import java.lang.StringBuilder;
 import java.util.NoSuchElementException;
 
-public class Pilha {
+public class PilhaChar {
     private int topo;
-    private int[] dados;
+    private char[] dados;
     private int capacidade;
 
-    public Pilha(int capacidade) {
-        dados = new int[capacidade];
+    public PilhaChar(int capacidade) {
+        dados = new char[capacidade];
         topo = 0;
         this.capacidade = capacidade;
     }
 
-    public Pilha() {
+    public PilhaChar() {
         this(10);
     }
 
@@ -28,9 +28,9 @@ public class Pilha {
         return topo;
     }
 
-    public boolean empilhar(int numero) {
+    public boolean empilhar(char caractere) {
         if (estaCheia()) return false;
-        dados[topo++] = numero;
+        dados[topo++] = caractere;
         return true;
     }
 
