@@ -13,5 +13,14 @@ public class Teste {
         System.out.print("Pós-ordem: ");
         arvore.posOrdem();
         System.out.println("Soma: " + arvore.somar());
+        
+        arvore.remover(50);
+
+        System.out.print("Pré-ordem: ");
+        arvore.preOrdem();
+        System.out.print("Em ordem: ");
+        arvore.emOrdem();
+        System.out.print("Pós-ordem: ");
+        arvore.posOrdem();
     }
 }

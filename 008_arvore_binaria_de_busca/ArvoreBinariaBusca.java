@@ -92,4 +92,42 @@ public class ArvoreBinariaBusca {
 		soma += atual.valor;
 		return soma;
 	}
+
+	public void remover(int valor) {
+		raiz = removerRecursivo(this.raiz, valor);
+	}
+
+	private No removerRecursivo(No atual, int valor) {
+		if (atual == null) {
+			return null;
+		}
+		if (valor < atual.valor) {
+			atual.esquerda = removerRecursivo(atual.esquerda, valor);
+			return atual;
+		}
+		if (valor > atual.valor) {
+			atual.direita = removerRecursivo(atual.direita, valor);
+			return atual;
+		}
+		if (atual.esquerda == null && atual.direita == null) {
+			return null;
+		}
+		if (atual.direita == null) {
+			return atual.esquerda;
+		}
+		if (atual.esquerda == null) {
+			return atual.direita;
+		}
+		No sucessor = menorDaSubarvore(atual.direita);
+		atual.valor = sucessor.valor;
+		atual.direita = removerRecursivo(atual.direita, sucessor.valor);
+		return atual;
+	}
+
+	private No menorDaSubarvore(No no) {
+		while (no.esquerda != null) {
+			no = no.esquerda;
+		}
+		return no;
+	}
 }
